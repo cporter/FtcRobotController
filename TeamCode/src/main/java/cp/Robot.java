@@ -22,11 +22,31 @@ public class Robot {
         this.telemetry = telemetry;
     }
 
+    public void setupEncoderTelemetry() {
+        telemetry.addData("lf:encoder", () -> {
+           return lf.getCurrentPosition();
+        });
+        telemetry.addData("lb:encoder", () -> {
+            return lb.getCurrentPosition();
+        });
+        telemetry.addData("rf:encoder", () -> {
+            return rf.getCurrentPosition();
+        });
+        telemetry.addData("rb:encoder", () -> {
+           return rb.getCurrentPosition();
+        });
+    }
+
     public void setMotorMode(DcMotor.RunMode mode) {
         lf.setMode(mode);
         rf.setMode(mode);
         lb.setMode(mode);
         rb.setMode(mode);
+    }
+
+    public void resetEncoders() {
+        setMotorMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        setMotorMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void setMotorPower(float left, float right) {
