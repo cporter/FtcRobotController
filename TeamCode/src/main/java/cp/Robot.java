@@ -3,6 +3,7 @@ package cp;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -20,6 +21,7 @@ public class Robot {
     public Robot(HardwareMap hardwareMap, Telemetry telemetry) {
         this.hardwareMap = hardwareMap;
         this.telemetry = telemetry;
+        init();
     }
 
     public void setupEncoderTelemetry() {
@@ -37,6 +39,13 @@ public class Robot {
         });
     }
 
+    public void setupPowerTelemetry () {
+        telemetry.addData("lf power", () -> lf.getPower());
+        telemetry.addData("lb power", () -> lb.getPower());
+        telemetry.addData("rf power", () -> rf.getPower());
+        telemetry.addData("rb power", () -> rb.getPower());
+    }
+
     public void setMotorMode(DcMotor.RunMode mode) {
         lf.setMode(mode);
         rf.setMode(mode);
@@ -50,7 +59,7 @@ public class Robot {
     }
 
     public void setMotorPower(float left, float right) {
-        setMotorPower(left, left, right, right);
+        setMotorPower(left, right, left, right);
     }
 
     protected float absmax(float... xs) {
@@ -84,7 +93,13 @@ public class Robot {
 
         setMotorMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        // @todo(cp): do half of the motors still need to be reversed?
+        lf.setDirection(DcMotorSimple.Direction.REVERSE);
+        lb.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        lf.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        lb.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rf.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rb.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.RADIANS;
