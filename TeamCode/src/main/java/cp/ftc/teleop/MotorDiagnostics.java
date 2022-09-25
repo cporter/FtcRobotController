@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import cp.HolonomicRobot;
+import cp.ftc.HolonomicRobot;
 import cp.ftc.Controller;
 
 @TeleOp(name = "MotorDiagnostic", group = "Diagnostic")

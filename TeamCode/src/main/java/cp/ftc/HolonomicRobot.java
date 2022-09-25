@@ -1,4 +1,4 @@
-package cp;
+package cp.ftc;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 

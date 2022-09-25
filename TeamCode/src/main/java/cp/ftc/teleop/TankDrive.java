@@ -3,7 +3,7 @@ package cp.ftc.teleop;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import cp.Robot;
+import cp.ftc.Robot;
 
 @TeleOp(name = "Tank Drive", group = "Drive")
 public class TankDrive extends OpMode {
