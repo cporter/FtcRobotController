@@ -1,13 +1,14 @@
-package cp;
+package cp.ftc.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
+import cp.HolonomicRobot;
 import cp.ftc.Controller;
 
-@TeleOp(name = "Holonomic Drive")
+@TeleOp(name = "Holonomic Drive", group = "Drive")
 public class HolonomicDrive extends OpMode {
     private HolonomicRobot robot;
     private boolean fieldCentric = true;

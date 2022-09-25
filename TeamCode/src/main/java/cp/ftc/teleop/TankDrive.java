@@ -1,9 +1,11 @@
-package cp;
+package cp.ftc.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name = "Tank Drive")
+import cp.Robot;
+
+@TeleOp(name = "Tank Drive", group = "Drive")
 public class TankDrive extends OpMode {
     private Robot robot;
 
